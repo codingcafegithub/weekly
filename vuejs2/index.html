@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vuejs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>To-do List</h1>
+
+        <form action="#" v-on:submit.prevent="addTaskFromTaskToAdd">
+            <input type="text" v-model="task_to_add">
+            <button type="submit">Tambah Task</button>
+        </form>
+        <ul>
+            <li v-for="(task, key) in tasks">{{task}}. <a href="#" v-on:click.prevent="deleteTask(key)">Delete</a></li>
+        </ul>
+    </div>
+
+    <script>
+     app = new Vue({
+         el: "#app",
+         data: {
+             task_to_add: null,
+             tasks: [
+                 'Makan Siang',
+                 'Shalat'
+             ]
+         },
+         methods: {
+             addTask(task){
+                 if(task){
+                    this.tasks.push(task)
+                 }
+             },
+             addTaskFromTaskToAdd(){
+                 this.addTask(this.task_to_add)
+                 this.task_to_add = ""
+             },
+             deleteTask(key){
+                 this.tasks.splice(key, 1)
+             }
+         }
+     })
+    </script>
+</body>
+</html>
