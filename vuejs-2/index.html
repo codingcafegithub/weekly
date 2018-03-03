@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vuejs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+</head>
+<body>
+    <div class="container" id="app" style="margin-top: 10rem">
+        <div class="center">
+            <h1>VueJs Todo List - Coding.Cafe</h1>
+            
+            <div class="input-to-do">
+                <label for="">Add to-do</label>
+                <input type="text" class="u-full-width" v-model="to_add">
+                <button class="button button-primary" v-on:click="add(to_add)">Add</button>
+            </div>
+            
+            <div class="todos" style="margin-top: 5rem">
+                <ul>
+                    <li v-for="(todo, key) in todos">{{todo}}. <a href="#" v-on:click="remove(key)">Remove</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        v = new Vue({
+            el: "#app",
+            data: {
+                to_add: null,
+                todos: [
+                    'Jalan-jalan',
+                    'Makan Nasi'
+                ]
+            },
+            methods: {
+                add(value){
+                    this.todos.push(value)
+                },
+                remove(key){
+                    this.todos.splice(key, 1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
